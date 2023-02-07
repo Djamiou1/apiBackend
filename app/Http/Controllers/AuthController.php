@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Models;
 use App\Models\User;
 use Symfony\Component\HttpFoundation\Response;
-// use Illuminate\Support\Facades\Cookie;
-use Cookie;
+use Illuminate\Support\Facades\Cookie;
+// use Cookie;
 
 class AuthController extends Controller
 {
