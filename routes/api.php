@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProduitController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,10 +19,12 @@ use App\Http\Controllers\AuthController;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
+Route::post('upload', [App\Http\Controllers\ProduitController::class, 'store']);
+Route::post('update/{id}', [App\Http\Controllers\ProduitController::class, 'update']);
+Route::apiResource('produit', 'App\Http\Controllers\ProduitController');
+
 
 Route::middleware('auth:sanctum')->group(function () {
-
     Route::get('user', [AuthController::class, 'user']);
     Route::post('logout', [AuthController::class, 'logout']);
-   
 });

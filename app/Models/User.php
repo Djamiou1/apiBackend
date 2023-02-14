@@ -32,4 +32,7 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function ads(){
+        return $this->hasMany('App\Models\Produit');
+    }
 }
