@@ -19,9 +19,9 @@ use App\Http\Controllers\ProduitController;
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
-Route::post('upload', [App\Http\Controllers\ProduitController::class, 'store']);
 Route::post('update/{id}', [App\Http\Controllers\ProduitController::class, 'update']);
 Route::apiResource('produit', 'App\Http\Controllers\ProduitController');
+Route::post('upload', [App\Http\Controllers\ProduitController::class, 'store']);
 
 
 Route::middleware('auth:sanctum')->group(function () {

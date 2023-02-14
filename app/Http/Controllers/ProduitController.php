@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use App\Http\Requests\Produit as produitRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ProduitController extends Controller
 {
@@ -42,7 +43,7 @@ class ProduitController extends Controller
        $produit->category = $request->category;
        $produit->localisation = $request->localisation;
        $produit->price = $request->price;
-    //    $produit->user_id = auth()->user()->id;
+       $produit->user_id = $request->user_id;
        $produit->description = $request->description;
        $produit->save();
 
