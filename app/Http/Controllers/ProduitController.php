@@ -73,51 +73,15 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id, Produit $produit)
+    public function update(Request $request, Produit $produit)
     {
-        // $arrayUpdate = [
-        //     'title' => $request->title,
-        //     'category' => $request->category,
-        //     'description' => $request->description,
-        //     'localisaion' => $request->localisaion,
-        //     'price' => $request->price,
-        //    ];
-        //    if($request->image != null){
-
-        //     $path = $request->file('image')->store('public');
-    
-        //     $arrayUpdate = array_merge($arrayUpdate,[
-        //         'image' => $path
-        //     ]);
-        //    }
-        //     $produit->update($arrayUpdate);
-
-        //     if($produit->update($arrayUpdate)){
-        //         return [
-        //             'success' => 'Produit modifié avec success'
-        //         ];
-        //     }
-
-        $produit = Produit::find($id);
-        //récupération d'image
-        $path = $request->file('image')->store('public');
-        //insertion
-        $produit->title = $request->title;
-        $produit->image = $path;
-        $produit->category = $request->category;
-        $produit->localisation = $request->localisation;
-        $produit->price = $request->price;
-     //    $produit->user_id = auth()->user()->id;
-        $produit->description = $request->description;
-        $produit->save();
+        $produit = $produit->update($request->all());
+        if($produit){
  
-        if($produit->save()){
- 
-             return [
-                 'success' => 'Produit modifié avec success'
-             ];
- 
-        }
+                     return [
+                         'success' => 'Produit modifié avec success'
+                     ];
+                }
     }
 
     /**
