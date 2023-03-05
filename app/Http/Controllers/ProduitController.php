@@ -75,37 +75,33 @@ class ProduitController extends Controller
      * @param  \App\Models\Produit  $produit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produit $produit)
+    public function update(Request $request, int $id)
     {
-        $arrayUpdate = [
-            'title' => $request->title,
-            'category' => $request->category,
-            'description' => $request->description,
-            'localisaion' => $request->localisaion,
-            'price' => $request->price,
-            'user_id' => $request->user_id
-           ];
-           if($request->image != null){
-            $filename = time() . '.' . $request->image;
-            $path = $request->file('image')->storeAs(
-                'avatars',
-                $filename,
-                'public'
-            );
-    
-            $arrayUpdate = array_merge($arrayUpdate,[
-                'image' => $path
-            ]);
-           }
-            $produit->update($arrayUpdate);
-    
+        $produit = Produit::find($id);
+        if($produit){
+
+            // $filename = time() . '.' . $request->image->extension();
+            // $path = $request->file('image')->storeAs(
+            //     'avatars',
+            //     $filename,
+            //     'public'
+            // );
+
+            $produit->title = $request->title;
+            // $produit->image = $path;
+            $produit->category = $request->category;
+            $produit->description = $request->description;
+            $produit->localisation = $request->localisation;
+            $produit->price = $request->price;
+            $produit->user_id = $request->user_id;
+            $produit->save();
+                
         
-            if($produit->update($arrayUpdate)){
-     
-                         return [
-                             'success' => 'Produit modifié avec success'
-                         ];
-                    }
+                    return [
+                        'success' => 'Produit modifié avec success'
+                    ];
+
+            }
     }
 
     /**
