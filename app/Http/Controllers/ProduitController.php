@@ -95,7 +95,7 @@ class ProduitController extends Controller
             $produit->price = $request->price;
             $produit->user_id = $request->user_id;
             $produit->save();
-                
+                 
         
                     return [
                         'success' => 'Produit modifié avec success'
